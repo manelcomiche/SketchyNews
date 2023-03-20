@@ -19,7 +19,7 @@ app.get('/', (req, res) => { res.sendFile('index.html'); })
 app.get('/api/generate', async (req, res) => {
     const prompt = req.query.prompt;
 
-    const generated = await midjourney(`mdjrny-v4 Based on the following description: ${prompt} generate me an artistic image of what I entered putting your own vision of it.`)
+    const generated = await midjourney(`Based on the following description: ${prompt} generate me an artistic image of what I entered putting your own vision of it.`)
 
     res.send(generated)
 
