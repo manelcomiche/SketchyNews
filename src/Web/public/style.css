@@ -4,7 +4,15 @@
     display: none;
 }
 
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: #e86a6a;
+}
+
 body {
+    height: auto;
     background-color: #181818;
     font-family: 'Rubik', sans-serif;
 }
@@ -14,7 +22,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 98vh;
 }
 
 .logo-container {
@@ -39,7 +47,6 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-
     font-size: 1.5rem;
     color: #FFFFFF;
 }
@@ -132,4 +139,73 @@ h1 {
     color: #FFFFFF;
     font-size: 1.5rem;
     text-align: center;
+}
+
+.footer {
+    color: #FFFFFF;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Tablets and larger screens */
+@media only screen and (max-width: 768px) {
+    .container {
+        height: auto;
+        padding: 50px 20px;
+    }
+
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .text-container {
+        margin-bottom: 20px;
+    }
+
+    .search-box-container {
+        margin-top: 20px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 20px 15px;
+        font-size: 16px;
+        margin-left: 0;
+        margin-top: 0px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    #output-container img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .loading-text {
+        font-size: 4rem;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .loading-text {
+        font-size: 3rem;
+    }
 }
