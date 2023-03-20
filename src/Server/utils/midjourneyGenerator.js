@@ -17,7 +17,7 @@ export default async function midjourney(prompt, inputs = {}) {
         body: JSON.stringify({
             inputs: {
                 guidance_scale: '7',
-                image_dimensions: "768x768",
+                image_dimensions: "512x512",
                 num_inference_steps: 50,
                 num_outputs: 1,
                 seed: null,
