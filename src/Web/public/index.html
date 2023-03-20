@@ -11,8 +11,7 @@
     <link rel="icon" href="./assets/SketchyNewsCercle.png" type="image/x-icon" />
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
 
-    <link rel="preconnect" href="https://sketchynews.cat/" />
-    <link rel="preconnect" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" />
+    <link rel="preconnect" href="https://sketchynews.onrender.com/" />
 
     <meta name="title" content="SketchyNews - Generador de imágenes de noticias" />
     <meta itemprop="name" content="SketchyNews - Generador de imágenes de noticias" />
@@ -29,13 +28,13 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="width" />
 
-    <link rel="canonical" href="https://sketchynews.cat/" />
-    <link rel="alternate" href="https://sketchynews.cat/" hreflang="es">
+    <link rel="canonical" href="https://sketchynews.onrender.com/" />
+    <link rel="alternate" href="https://sketchynews.onrender.com/" hreflang="es">
 
     <meta name="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SketchyNews - Generador de imágenes de noticias" />
-    <meta property="og:url" content="https://sketchynews.cat/" />
+    <meta property="og:url" content="https://sketchynews.onrender.com/" />
     <meta property="og:title" content="SketchyNews - Generador de imágenes de noticias" />
     <meta property="og:description"
         content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
@@ -44,13 +43,13 @@
     <meta name="twitter:creator" content="@manelcomiche" />
     <meta name="twitter:site" content="@manelcomiche" />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sketchynews.cat/" />
+    <meta property="twitter:url" content="https://sketchynews.onrender.com/" />
     <meta property="twitter:title" content="SketchyNews - Generador de imágenes de noticias" />
     <meta property="twitter:description"
         content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
     <meta property="twitter:image" content="./assets/nameBanner.png" />
     <meta property="twitter:image:alt" content="Banner de perfil - SketchyNews" />
-    <meta name="theme-color" content="#6366F1" />
+    <meta name="theme-color" content="#181818" />
 </head>
 
 <body>
@@ -62,7 +61,7 @@
 
         <div class="search-box-container">
             <div class="search-box">
-                <input type="text" id="url-input" placeholder="Ingresa la URL de la noticia">
+                <input type="text" id="url-input" placeholder="Introduce el titular">
                 <button onclick="generateImage()">Generar imagen</button>
             </div>
         </div>
@@ -70,8 +69,8 @@
         <div id="output-container"></div>
 
         <div class="footer">
-            <p>SketchyNews es un proyecto creador con ❤️ por <a href="https://manelcomiche.me/">Manel Comiche</a>
-        </p>
+            <p>SketchyNews es un proyecto creador con ❤️ por <a href="https://manelcomiche.me/">Manel Comiche</a></p>
+        </div>
     </div>
 </body>
 
@@ -87,7 +86,8 @@
 
         let url = document.getElementById("url-input").value;
 
-        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?${url}`)
+        console.log("SERVICE RECEIVED")
+        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?prompt=${url}`)
         const fetchedImageURL = await fetchImage.json()
 
         document.getElementById("output-container").innerHTML = ``;
@@ -102,6 +102,8 @@
                 <button>Descargar</button>
             </a>
         </div>`;
+
+        console.log("SERVICE DELIVERED")
     }
 </script>
 

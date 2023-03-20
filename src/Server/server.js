@@ -24,5 +24,4 @@ app.get('/api/generate', async (req, res) => {
     res.send(generated)
 
     console.log(generated)
-
 });
