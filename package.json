@@ -1,0 +1,28 @@
+{
+  "name": "webianews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/Server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/Server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LHCLYT/WebIANews.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LHCLYT/WebIANews/issues"
+  },
+  "homepage": "https://github.com/LHCLYT/WebIANews#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "html": "^1.0.0",
+    "node-fetch-cookies": "^2.0.4"
+  },
+  "type": "module"
+}

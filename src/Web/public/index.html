@@ -8,19 +8,22 @@
 
     <link href="./style.css" rel="stylesheet" type="text/css" />
 
-    <link rel="icon" href="/assets/SketchyNewsCercle.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./assets/SketchyNewsCercle.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
 
-    <link rel="preconnect" href="https://manelcomiche.me" />
+    <link rel="preconnect" href="https://sketchynews.cat/" />
     <link rel="preconnect" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" />
 
     <meta name="title" content="SketchyNews - Generador de imágenes de noticias" />
     <meta itemprop="name" content="SketchyNews - Generador de imágenes de noticias" />
-    <meta name="description" content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
-    <meta itemprop="description" content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
-    <meta name="keywords" content="SketchyNews, sketchynews, news ia generator, news generator, news ia, news image"/>
-    <meta itemprop="keywords" content="SketchyNews, sketchynews, news ia generator, news generator, news ia, news image">
-    
+    <meta name="description"
+        content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
+    <meta itemprop="description"
+        content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
+    <meta name="keywords" content="SketchyNews, sketchynews, news ia generator, news generator, news ia, news image" />
+    <meta itemprop="keywords"
+        content="SketchyNews, sketchynews, news ia generator, news generator, news ia, news image">
+
     <meta name="robots" content="index, follow" />
     <meta name="language" content="Spanish" />
     <meta name="HandheldFriendly" content="True" />
@@ -34,67 +37,65 @@
     <meta property="og:site_name" content="SketchyNews - Generador de imágenes de noticias" />
     <meta property="og:url" content="https://sketchynews.cat/" />
     <meta property="og:title" content="SketchyNews - Generador de imágenes de noticias" />
-    <meta property="og:description" content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
-    <meta property="og:image" content="/assets/nameBanner.png" />
+    <meta property="og:description"
+        content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
+    <meta property="og:image" content="./assets/nameBanner.png" />
 
     <meta name="twitter:creator" content="@manelcomiche" />
     <meta name="twitter:site" content="@manelcomiche" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://sketchynews.cat/" />
     <meta property="twitter:title" content="SketchyNews - Generador de imágenes de noticias" />
-    <meta property="twitter:description" content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
-    <meta property="twitter:image" content="/assets/nameBanner.png" />
-    <meta property="twitter:image:alt" content="Banner de perfil - Manel Comiche" />
+    <meta property="twitter:description"
+        content="SketchyNews es un generador de imágenes de noticias através de una potente inteligencia artificial, dando como resultado una imagen de noticia con un estilo único." />
+    <meta property="twitter:image" content="./assets/nameBanner.png" />
+    <meta property="twitter:image:alt" content="Banner de perfil - SketchyNews" />
     <meta name="theme-color" content="#6366F1" />
 </head>
 
 <body>
     <div class="container">
         <div class="logo-container">
-            <img src="/assets/SketchyNewsCercle.png" alt="Logo" class="logo">
+            <img src="./assets/SketchyNewsCercle.png" alt="Logo" class="logo">
             <h1>SketchyNews</h1>
         </div>
         <div class="search-box-container">
             <div class="search-box">
                 <input type="text" id="url-input" placeholder="Ingresa la URL de la noticia">
-                <button onclick="generateImage()">Enviar</button>
+                <button onclick="generateImage()">Generar imagen</button>
             </div>
         </div>
         <div id="output-container"></div>
     </div>
 </body>
 
-<script src="https://unpkg.com/midjourney-client@1.0.4/index.js"></script>
-
 <script>
     async function generateImage() {
         document.getElementById("output-container").innerHTML = `
-            <div class="loading-container">
-                <div class="loading">
-                    <div class="loading-text">Cargando...</div>
-                    <div class="loading-spinner"></div>
-                </div>
+        <div class="loading-container">
+            <div class="loading">
+                <div class="loading-text">Cargando...</div>
+                <div class="loading-spinner"></div>
             </div>
-        `;
+        </div>`;
 
         let url = document.getElementById("url-input").value;
 
-        const fetchImage = await fetch(`http://localhost:3000?query=${url}`)
+        const fetchImage = await fetch(`http://localhost:3000/api/generate?${url}`)
         const fetchedImageURL = await fetchImage.json()
 
         document.getElementById("output-container").innerHTML = ``;
 
         document.getElementById("output-container").innerHTML += `
-            <div class="output">
-                <img src="${fetchedImageURL[0]}" alt="Output" class="output-image">
-            </div>
+        <div class="output">
+            <img src="${fetchedImageURL[0]}" alt="Output" class="output-image">
+        </div>
 
-            <div class="download-button-container">
-                <a href="${fetchedImageURL[0]}" download="output.png">
-                    <button>Descargar</button>
-                </a>
-            </div>
-        `;
+        <div class="download-button-container">
+            <a href="${fetchedImageURL[0]}" download="output.png">
+                <button>Descargar</button>
+            </a>
+        </div>`;
     }
 </script>
 

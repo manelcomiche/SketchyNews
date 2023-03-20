@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap');
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     background-color: #181818;
     font-family: 'Rubik', sans-serif;
