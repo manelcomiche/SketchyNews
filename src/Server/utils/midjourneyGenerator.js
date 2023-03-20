@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { fetch, CookieJar } from 'node-fetch-cookies';
 
 function sleep(milliseconds) { return new Promise(resolve => setTimeout(resolve, milliseconds)) }
