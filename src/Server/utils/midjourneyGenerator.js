@@ -17,8 +17,7 @@ export default async function midjourney(prompt, inputs = {}) {
         body: JSON.stringify({
             inputs: {
                 guidance_scale: '7',
-                width: 512,
-                height: 512,
+                image_dimensions: "768x768",
                 num_inference_steps: 50,
                 num_outputs: 1,
                 seed: null,
@@ -26,7 +25,7 @@ export default async function midjourney(prompt, inputs = {}) {
                 ...inputs,
             },
         }),
-    })
+    });
 
     const uuid = (await response1.json()).uuid
 
