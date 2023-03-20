@@ -70,7 +70,7 @@
         <div id="output-container"></div>
 
         <div class="footer">
-            <p>SketchyNews es un proyecto creador con ❤️ por <a href="https://manelcomiche.com">Manel Comiche</a>
+            <p>SketchyNews es un proyecto creador con ❤️ por <a href="https://manelcomiche.me/">Manel Comiche</a>
         </p>
     </div>
 </body>
@@ -87,7 +87,7 @@
 
         let url = document.getElementById("url-input").value;
 
-        const fetchImage = await fetch(`http://localhost:3000/api/generate?${url}`)
+        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?${url}`)
         const fetchedImageURL = await fetchImage.json()
 
         document.getElementById("output-container").innerHTML = ``;
