@@ -22,8 +22,7 @@
     "axios": "^1.3.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "html": "^1.0.0",
-    "node-fetch-cookies": "^2.0.4"
+    "html": "^1.0.0"
   },
   "type": "module"
 }
