@@ -83,18 +83,18 @@
         let url = document.getElementById("url-input").value;
 
         console.log("SERVICE RECEIVED")
-        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?prompt=${url}`)
-        const fetchedImageURL = await fetchImage.json()
+        const fetchImage = await fetch(`https://api.hypere.app/playground/api/image?prompt=Based on the following description: ${url} generate me an artistic image of what I entered putting your own vision of it.`)
+        const fetchedImageURL = await fetchImage.text()
 
         document.getElementById("output-container").innerHTML = ``;
 
         document.getElementById("output-container").innerHTML += `
         <div class="output">
-            <img src="${fetchedImageURL[0]}" alt="Output" class="output-image">
+            <img src="${fetchedImageURL}" alt="Output" class="output-image">
         </div>
 
         <div class="download-button-container">
-            <a href="${fetchedImageURL[0]}" download="output.png">
+            <a href="${fetchedImageURL}" download="output.png">
                 <button>Descargar</button>
             </a>
         </div>`;
