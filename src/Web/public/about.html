@@ -60,9 +60,9 @@
         <i class="fa fa-bars"></i>
     </div>
     <ul class="nav-links">
-        <li class="nav-link"><a href="#">Casa</a></li>
+        <li class="nav-link"><a href="/">Casa</a></li>
         <li class="nav-link"><a href="/about">Sobre la Web</a></li>
-        <li class="nav-link"><a href="mailto:zz18_manel_comichemartin@mmpol.cat">Contacte</a></li>
+        <li class="nav-link"><a href="mailto:aquispam12@gmail.com">Contacte</a></li>
         <li class="nav-link auth"><a target="_blank" href="https://openai.com/">Proyecte de OpenIA</a></li>
     </ul>
 </nav>
@@ -75,51 +75,49 @@
             <h2 style="margin-top: 8rem; color: white;">Generador d'imatges de notícies fent servir IA</h2>
         </div>
 
-        <div class="search-box-container">
-            <div class="search-box">
-                <input type="text" id="url-input" placeholder="Introdueix el titular">
-                <button onclick="generateImage()">Generar imagen</button>
-            </div>
-        </div>
+        <section id="about">
+            <p style="font-size: 1.5rem; margin-top: 4rem; color: white">Aquesta web proporciona imatges basades en titulars de notícies, està basada en el model DALL-E2 d'OPENIA</p>
+            <p style="font-size: 1.5rem; color: white">Fes servir aquesta eina amb cura, cada petició té un cost! Gràcies a FOXGPT per l'ajuda!</p>
+            <p style="font-size: 1.5rem; color: white">A continuació podeu veure alguns exemples generats fent servir aquesta eina:</p>
 
-        <div id="output-container"></div>
+            <div style="text-align:center;">
+                <table style="margin-top: 4rem; color: white; margin-left:auto; margin-right:auto;">
+                    <tr>
+                        <th>Model</th>
+                        <th>Imatge</th>
+                    </tr>
+                    <tr>
+                        <td>Los Mossos no dejarán que Desokupa actúe en la okupación de la Bonanova</td>
+                        <td>
+                            <img style="width: 100px;" src="./assets/til1.png" alt="Imatge de notícia">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>El Gobierno estima que avalará la entrada a una vivienda a 50.000 jóvenes</td>
+                        <td>
+                            <img style="width: 100px;" src="./assets/til2.png" alt="Imatge de notícia">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Patronales y sindicatos solo han cumplido sus acuerdos salariales un año de los últimos 18</td>
+                        <td>
+                            <img style="width: 100px;" src="./assets/til3.png" alt="Imatge de notícia">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+
+
+
+        </section>
+
+
 
         <div class="footer">
             <p>SketchyNews és un projecte creat amb ❤️ per <a href="https://manelcomiche.me/">Manel Comiche</a></p>
         </div>
     </div>
 </body>
-
-<script>
-    async function generateImage() {
-        document.getElementById("output-container").innerHTML = `
-        <div class="loading-container">
-            <div class="loading">
-                <div class="loading-text">Cargando...</div>
-                <div class="loading-spinner"></div>
-            </div>
-        </div>`;
-
-        let url = document.getElementById("url-input").value;
-
-        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?prompt=${url}`)
-        const fetchedImageURL = await fetchImage.text()
-
-        document.getElementById("output-container").innerHTML = ``;
-
-        document.getElementById("output-container").innerHTML += `
-        <div class="output">
-            <img src="${fetchedImageURL}" alt="Output" class="output-image">
-        </div>
-
-        <div class="download-button-container">
-            <a href="${fetchedImageURL}" download="output.png">
-                <button>Descargar</button>
-            </a>
-        </div>`;
-
-        console.log("SERVICE DELIVERED")
-    }
-</script>
 
 </html>
