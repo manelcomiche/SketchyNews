@@ -6,10 +6,8 @@ const app = express();
 import path from 'path';
 global.__dirname = path.resolve();
 
-import config from './config.js';
-
 import { Configuration, OpenAIApi } from "openai";
-const configuration = new Configuration({ apiKey: config.FOXGPT, basePath: "https://api.hypere.app" });
+const configuration = new Configuration({ apiKey: 'fg-JGF3T1SW5YH7YZ6E7QGT4T3ZRP7BBIFJVJ35IXTX', basePath: "https://api.hypere.app" });
 const openai = new OpenAIApi(configuration)
 
 app.listen(3000, () => { console.log(`Server listening on port 3000`); });
