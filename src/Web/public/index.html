@@ -102,7 +102,7 @@
 
         let url = document.getElementById("url-input").value;
 
-        const fetchImage = await fetch(`https://sketchynews.vercel.app/api/generate?prompt=${url}`)
+        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?prompt=${url}`)
         const fetchedImageURL = await fetchImage.text()
 
         document.getElementById("output-container").innerHTML = ``;
