@@ -102,9 +102,7 @@
 
         let url = document.getElementById("url-input").value;
 
-        const fetchImage = await fetch(`${process.env.HOST}/api/generate?prompt=${url}`)
-        console.log("SERVICE CALLED")
-        console.log(fetchImage)
+        const fetchImage = await fetch(`https://sketchynews.vercel.app/api/generate?prompt=${url}`)
         const fetchedImageURL = await fetchImage.text()
 
         document.getElementById("output-container").innerHTML = ``;
@@ -119,8 +117,6 @@
                 <button>Descarregar</button>
             </a>
         </div>`;
-
-        console.log("SERVICE DELIVERED")
     }
 </script>
 
