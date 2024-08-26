@@ -12,7 +12,7 @@ const fastify = Fastify({ logger: true });
 
 const openai = new OpenAI({ baseURL: process.env.OPENAI_HOST, apiKey: process.env.OPENAI_API });
 
-fastify.register(import('@fastify/static'), { root: path.join(__dirname, '../../src/Web/public'), prefix: '/' });
+fastify.register(import('@fastify/static'), { root: path.join(__dirname, '../web/public'), prefix: '/' });
 
 fastify.get('/', async (request, reply) => { return reply.sendFile('index.html'); });
 
@@ -49,4 +49,4 @@ const start = async () => {
     }
 };
 
-export default fastify;
+start();
