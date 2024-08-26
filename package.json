@@ -2,10 +2,10 @@
   "name": "sketchynews",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/Server/server.js",
+  "main": "./api/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/Server/server.js"
+    "start": "node ./api/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/manelcomiche/sketchynews#readme",
   "dependencies": {
     "@fastify/static": "^7.0.4",
+    "@vercel/node": "^3.2.9",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
     "node-fetch": "^3.3.2",
