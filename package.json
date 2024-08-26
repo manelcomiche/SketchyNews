@@ -2,10 +2,10 @@
   "name": "sketchynews",
   "version": "1.0.0",
   "description": "",
-  "main": "./api/server.js",
+  "main": "./src/Server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./api/server.js"
+    "start": "node ./src/Server/server.js"
   },
   "repository": {
     "type": "git",
