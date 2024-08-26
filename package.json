@@ -1,5 +1,5 @@
 {
-  "name": "webianews",
+  "name": "sketchynews",
   "version": "1.0.0",
   "description": "",
   "main": "./src/Server/server.js",
@@ -9,22 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LHCLYT/WebIANews.git"
+    "url": "git+https://github.com/manelcomiche/sketchynews.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Manel Comiche",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LHCLYT/WebIANews/issues"
+    "url": "https://github.com/manelcomiche/sketchynews/issues"
   },
-  "homepage": "https://github.com/LHCLYT/WebIANews#readme",
+  "homepage": "https://github.com/manelcomiche/sketchynews#readme",
   "dependencies": {
     "@fastify/static": "^7.0.4",
-    "axios": "^1.7.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
     "fastify": "^4.28.1",
-    "html": "^1.0.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.56.0"
   },
