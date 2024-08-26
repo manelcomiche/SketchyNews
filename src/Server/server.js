@@ -1,28 +1,52 @@
 import 'dotenv/config';
 
-import express from 'express'
-const app = express();
-
+import Fastify from 'fastify';
 import path from 'path';
-global.__dirname = path.resolve();
+import { fileURLToPath } from 'url';
+import OpenAI from "openai";
 
-import { Configuration, OpenAIApi } from "openai";
-const configuration = new Configuration({ apiKey: 'fg-JGF3T1SW5YH7YZ6E7QGT4T3ZRP7BBIFJVJ35IXTX', basePath: "https://api.hypere.app" });
-const openai = new OpenAIApi(configuration)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-app.listen(3000, () => { console.log(`Server listening on port 3000`); });
+const fastify = Fastify({ logger: true });
 
-app.use(express.static(path.join(__dirname, '/src/Web/public')));
+const openai = new OpenAI({ baseURL: process.env.OPENAI_HOST, apiKey: process.env.OPENAI_API });
 
-app.get('/', (req, res) => { res.sendFile('index.html'); })
+fastify.register(import('@fastify/static'), { root: path.join(__dirname, '../../src/Web/public'), prefix: '/' });
 
-app.get('/api/generate', async (req, res) => {
-    const prompt = req.query.prompt;
+fastify.get('/', async (request, reply) => { return reply.sendFile('index.html'); });
 
-    const fetchImage = await openai.createImage({ prompt: `Based on the following description: ${prompt} generate me an artistic image of what I entered putting your own vision of it.` });
+fastify.get('/api/generate', async (request, reply) => {
+    try {
+        const { prompt } = request.query;
+        if (!prompt) { reply.status(400).send('Prompt is required'); return; }
 
-    const fetchText = fetchImage.data.data[0].url
-    if (!fetchText || fetchText && fetchText.length <= 0 || fetchText.length === 265) { res.send('Error'); return; }
+        const fetchImage = await openai.images.generate({
+            prompt: `Based on the following description: ${prompt} generate me an artistic image of what I entered putting your own vision of it.`,
+            n: 1,
+            size: '1024x1024',
+            model: 'sdxl'
+        });
 
-    res.send(fetchText)
+        const fetchText = fetchImage.data[0].url;
+
+        if (!fetchText || fetchText.length === 265) { reply.status(500).send('Error generating image'); return; }
+
+        reply.send(fetchText);
+    } catch (error) {
+        fastify.log.error(error);
+        reply.status(500).send('Internal Server Error');
+    }
 });
+
+const start = async () => {
+    try {
+        await fastify.listen({ port: 3000 });
+        fastify.log.info('Server listening on port 3000');
+    } catch (err) {
+        fastify.log.error(err);
+        process.exit(1);
+    }
+};
+
+start();

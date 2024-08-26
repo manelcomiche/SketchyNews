@@ -1,31 +1,37 @@
-# Generador d'imatges a partir de titulars de notícies
+# 🌟 SketchyNews: Generador de Imágenes a partir de Titulares de Noticias 📸
 
-Aquest projecte consisteix en crear un generador automàtic d'imatges a partir del titular d'una notícia. L'objectiu és proporcionar una eina creativa amb una visió única de les notícies.
+Este proyecto consiste en crear un generador automático de imágenes a partir del titular de una noticia. El objetivo es proporcionar una herramienta creativa que ofrezca una visión única de las noticias. 📰✨
 
-## Com funciona
+## ¿Cómo funciona? 🚀
 
-El generador d'imatges utilitza una combinació de tècniques de processament de llenguatge natural i aprenentatge automàtic per analitzar el titular de la notícia i generar una imatge que representi visualment el contingut de la mateixa.
+El generador de imágenes utiliza una combinación de técnicas de **procesamiento de lenguaje natural** y **aprendizaje automático** para analizar el titular de la noticia y generar una imagen que represente visualmente su contenido.
 
-L'usuari introdueix el titular de la notícia en la interfície del generador i, a través d'una sèrie d'algoritmes, es genera automàticament una imatge que reflecteixi el contingut d'aquesta.
+Solo necesitas introducir el titular de la noticia en la interfaz del generador y, a través de una serie de algoritmos avanzados, se generará automáticamente una imagen que refleje el contenido del titular. 🖥️🔍
 
-## Tecnologies:
+## 🔴 Live Demo
+[Live](https://sketchynews.manel.digital/)
 
-El generador d'imatges utilitza una varietat de tecnologies per funcionar, incloent-hi:
+## Tecnologías Utilizadas 🛠️
 
-- Node.JS: Processador central de la pàgina web
-- Processament de llenguatge natural: Una tècnica feta servir per analitzar i entendre el llenguatge humà.
-- Aprenentatge automàtic: Una tècnica feta servir per entrenar el generador perquè sigui capaç d'aprendre i millorar amb el temps.
+El generador de imágenes utiliza una variedad de tecnologías, incluyendo:
 
-El model es basa en stable-diffusion, gracies al support de replicate.com.
+- **Node.JS**: Procesador central de la página web.
+- **Procesamiento de Lenguaje Natural**: Técnica utilizada para analizar y comprender el lenguaje humano.
+- **Aprendizaje Automático**: Método que permite al generador aprender y mejorar con el tiempo.
 
-## Com utilitzar el generador
+El modelo se basa en **Stable Diffusion**, gracias al soporte de [replicate.com](https://replicate.com).
 
-Per utilitzar el generador d'imatges, simplement introdueix el titular de la notícia en la caixa central, fes clic al botó "Generar imatge". A continuació, el generador processarà el titular i generarà automàticament una imatge.
+## Cómo Utilizar el Generador 📝
 
-## Contribucions i millores
+Para usar el generador de imágenes, simplemente introduce el titular de la noticia en la caja central y haz clic en el botón "Generar imagen". A continuación, el generador procesará el titular y creará automáticamente una imagen. ¡Es así de fácil! 🚀
 
-Si esteu interessat en contribuir al projecte o teniu idees per millorar-lo, no dubteu en posar-vos en contacte amb nosaltres. Estem oberts a col·laboracions i suggeriments per millorar el generador d'imatges.
+## 💼 Contribuir
+¡Estamos abiertos a contribuciones! Si tienes alguna idea, mejora o has encontrado un error, por favor crea un "Issue" o envía un "Pull Request". 🙌
 
-## Autor
+## 👨‍💻 Desarrollado por
+SketchyNews está desarrollado con ❤️ por [Manel Comiche](manelcomiche.com)
 
-Aquest projecte ha estat desenvolupat per Manel Comiche.
+📧 Contacto: [hola@manelcomiche.com](mailto:hola@manelcomiche.com)
+
+## 📜 Licencia
+Este proyecto está bajo la licencia MIT. Para más detalles, consulta el archivo LICENSE.

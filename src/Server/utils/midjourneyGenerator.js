@@ -1,37 +1,56 @@
-import axios from 'axios';
+import fetch from 'node-fetch';
 
 export default {
-    run: async function (model, inputs) {
-        let prediction;
-        try { prediction = await this.create(model, inputs); }
-        catch (e) { throw e.response.data; }
-        while (!['canceled', 'succeeded', 'failed'].includes(prediction.status)) {
-            await new Promise(_ => setTimeout(_, 250));
-            prediction = await this.get(prediction);
+    run: async function (model, prompt) {
+        let imageData;
+        try {
+            imageData = await this.create(model, prompt);
+        } catch (e) {
+            console.error("[ERROR: FETCH IMAGE DATA]", e);
+            throw e;
         }
 
-        return prediction.output;
+        // Verificar si hay un error o no se encontraron datos
+        if (!imageData || imageData.error || !imageData.data) {
+            console.error("[ERROR: IMAGE GENERATION FAILED]", imageData?.error || 'Unknown error');
+            return null;
+        }
+
+        const finalImage = imageData.data[0].url;
+
+        // Descargar la imagen
+        const imageBuffer = await fetch(finalImage).then(res => res.arrayBuffer());
+        const blob = new Blob([imageBuffer]);
+
+        return {
+            blob: blob,
+            url: finalImage
+        };
     },
 
-    async get(prediction) {
-        if (prediction.prediction) return prediction.prediction;
-        const controller = new AbortController();
-        const id = setTimeout(() => controller.abort(), 29000);
-        const response = await axios.get(`https://replicate.com/api/models${prediction.version.model.absolute_url}/versions/${prediction.version_id}/predictions/${prediction.uuid}`, { signal: controller.signal }).then(r => r.data);
-        clearTimeout(id);
-        return response;
-    },
+    async create(model, prompt) {
+        try {
+            const response = await fetch('https://api.naga.ac/v1/images/generations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${process.env.NAGA_GPT_API}`
+                },
+                body: JSON.stringify({
+                    model: model,
+                    prompt: prompt,
+                    size: "1024x1024",
+                    n: 1,
+                    response_format: "url"
+                })
+            });
 
-    create(model, inputs) {
-        const [path, version] = model.split(':');
-
-        return axios({
-            url: `https://replicate.com/api/models/${path}/versions/${version}/predictions`,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify({ inputs })
-        }).then(response => response.data);
+            const data = await response.json();
+            console.log('data', data);
+            return data;
+        } catch (error) {
+            console.error("[ERROR: CREATE IMAGE REQUEST]", error);
+            throw error;
+        }
     }
 };

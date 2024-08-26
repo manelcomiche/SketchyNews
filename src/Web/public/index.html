@@ -61,9 +61,9 @@
     </div>
     <ul class="nav-links">
         <li class="nav-link"><a href="#">Casa</a></li>
-        <li class="nav-link"><a href="/about.html">Sobre la Web</a></li>
-        <li class="nav-link"><a href="mailto:zz18_manel_comichemartin@mmpol.cat">Contacte</a></li>
-        <li class="nav-link auth"><a target="_blank" href="https://openai.com/">Projecte d'OpenIA</a></li>
+        <li class="nav-link"><a href="/about">Sobre la Web</a></li>
+        <li class="nav-link"><a href="mailto:hola@manelcomiche.com">Contacte</a></li>
+        <li class="nav-link auth"><a target="_blank" href="https://manelcomiche.com/">Portfolio</a></li>
     </ul>
 </nav>
 
@@ -85,7 +85,7 @@
         <div id="output-container"></div>
 
         <div class="footer">
-            <p>SketchyNews és un projecte creat amb ❤️ per <a href="https://manelcomiche.me/">Manel Comiche</a></p>
+            <p>SketchyNews és un projecte creat amb ❤️ per <a href="https://manelcomiche.com/">Manel Comiche</a></p>
         </div>
     </div>
 </body>
@@ -102,7 +102,9 @@
 
         let url = document.getElementById("url-input").value;
 
-        const fetchImage = await fetch(`https://sketchynews.onrender.com/api/generate?prompt=${url}`)
+        const fetchImage = await fetch(`${process.env.HOST}/api/generate?prompt=${url}`)
+        console.log("SERVICE CALLED")
+        console.log(fetchImage)
         const fetchedImageURL = await fetchImage.text()
 
         document.getElementById("output-container").innerHTML = ``;
