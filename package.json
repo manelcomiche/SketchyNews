@@ -1,30 +1,35 @@
 {
   "name": "sketchynews",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./src/Server/server.js",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/Server/server.js"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/manelcomiche/sketchynews.git"
   },
-  "keywords": [],
   "author": "Manel Comiche",
-  "license": "ISC",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/manelcomiche/sketchynews/issues"
   },
   "homepage": "https://github.com/manelcomiche/sketchynews#readme",
   "dependencies": {
-    "@fastify/static": "^7.0.4",
-    "@vercel/node": "^3.2.9",
-    "dotenv": "^16.4.5",
-    "fastify": "^4.28.1",
-    "node-fetch": "^3.3.2",
-    "openai": "^4.56.0"
+    "next": "^16.2.6",
+    "openai": "^6.38.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
-  "type": "module"
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.6",
+    "@types/node": "^25.8.0",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.2",
+    "tailwindcss": "^4.1.6",
+    "typescript": "^6.0.3"
+  }
 }

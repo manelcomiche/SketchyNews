@@ -1,37 +1,88 @@
-# 🌟 SketchyNews: Generador de Imágenes a partir de Titulares de Noticias 📸
+# SketchyNews
 
-Este proyecto consiste en crear un generador automático de imágenes a partir del titular de una noticia. El objetivo es proporcionar una herramienta creativa que ofrezca una visión única de las noticias. 📰✨
+Transform any news headline into a striking AI-generated illustration powered by OpenAI DALL-E 3.
 
-## ¿Cómo funciona? 🚀
+## Features
 
-El generador de imágenes utiliza una combinación de técnicas de **procesamiento de lenguaje natural** y **aprendizaje automático** para analizar el titular de la noticia y generar una imagen que represente visualmente su contenido.
+- **AI image generation** from news headlines using DALL-E 3
+- **Per-user API key** — each user brings their own OpenAI key, stored securely in browser `localStorage`
+- **Privacy-first** — keys are sent over HTTPS and never logged or stored server-side
+- **Responsive dark UI** built with Next.js 15, React 19, and Tailwind CSS v4
+- **One-click PNG download** via a server-side proxy
 
-Solo necesitas introducir el titular de la noticia en la interfaz del generador y, a través de una serie de algoritmos avanzados, se generará automáticamente una imagen que refleje el contenido del titular. 🖥️🔍
+## Getting Started
 
-## 🔴 Live Demo
-[Live](https://sketchynews.manel.digital/)
+### Prerequisites
 
-## Tecnologías Utilizadas 🛠️
+- [Node.js](https://nodejs.org/) 18+
+- [pnpm](https://pnpm.io/) — install with `npm i -g pnpm`
+- An [OpenAI API key](https://platform.openai.com/api-keys) (each user can provide their own via the UI)
 
-El generador de imágenes utiliza una variedad de tecnologías, incluyendo:
+### Installation
 
-- **Node.JS**: Procesador central de la página web.
-- **Procesamiento de Lenguaje Natural**: Técnica utilizada para analizar y comprender el lenguaje humano.
-- **Aprendizaje Automático**: Método que permite al generador aprender y mejorar con el tiempo.
+```bash
+git clone https://github.com/manelcomiche/sketchynews.git
+cd sketchynews
+pnpm install
+```
 
-El modelo se basa en **Stable Diffusion**, gracias al soporte de [replicate.com](https://replicate.com).
+### Configuration
 
-## Cómo Utilizar el Generador 📝
+```bash
+cp .env.example .env.local
+```
 
-Para usar el generador de imágenes, simplemente introduce el titular de la noticia en la caja central y haz clic en el botón "Generar imagen". A continuación, el generador procesará el titular y creará automáticamente una imagen. ¡Es así de fácil! 🚀
+| Variable | Required | Description |
+|---|---|---|
+| `OPENAI_API_KEY` | No | Server-side fallback key (users without a personal key will use this) |
+| `OPENAI_BASE_URL` | No | Custom OpenAI-compatible base URL for proxies or alternative providers |
 
-## 💼 Contribuir
-¡Estamos abiertos a contribuciones! Si tienes alguna idea, mejora o has encontrado un error, por favor crea un "Issue" o envía un "Pull Request". 🙌
+If neither is set, users must enter their own key via the **API Key** button in the UI.
 
-## 👨‍💻 Desarrollado por
-SketchyNews está desarrollado con ❤️ por [Manel Comiche](manelcomiche.com)
+### Development
 
-📧 Contacto: [hola@manelcomiche.com](mailto:hola@manelcomiche.com)
+```bash
+pnpm dev
+```
 
-## 📜 Licencia
-Este proyecto está bajo la licencia MIT. Para más detalles, consulta el archivo LICENSE.
+Open [http://localhost:3000](http://localhost:3000).
+
+### Production
+
+```bash
+pnpm build
+pnpm start
+```
+
+## Usage
+
+1. Click **API Key** in the header and enter your OpenAI key.
+2. Type a news headline or scene description in the input.
+3. Press **Generate Image** (or **⌘+Enter** / **Ctrl+Enter**).
+4. Download the 1024×1024 PNG with one click.
+
+## Live Demo
+
+[sketchynews.manel.digital](https://sketchynews.manel.digital/)
+
+## Tech Stack
+
+| | |
+|---|---|
+| Framework | [Next.js 15](https://nextjs.org/) (App Router) |
+| UI | [React 19](https://react.dev/) + [Tailwind CSS v4](https://tailwindcss.com/) |
+| AI | [OpenAI SDK](https://github.com/openai/openai-node) — DALL-E 3 |
+| Language | TypeScript |
+| Package manager | [pnpm](https://pnpm.io/) |
+
+## Contributing
+
+Issues and pull requests are welcome. For larger changes, open an issue first to discuss what you'd like to change.
+
+## Credits
+
+Developed with care by [Manel Comiche](https://manelcomiche.com) — [hola@manelcomiche.com](mailto:hola@manelcomiche.com)
+
+## License
+
+[GNU AGPL v3.0](LICENSE) — if you deploy a modified version, you must make the source available to your users.
