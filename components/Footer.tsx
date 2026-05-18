@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-[#2e2e2e] mt-20">
       <div className="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -17,10 +22,10 @@ export default function Footer() {
         </p>
         <nav className="flex items-center gap-5 text-sm text-[#888]">
           <Link href="/" className="hover:text-white transition-colors">
-            Generate
+            {t.footer.generate}
           </Link>
           <Link href="/about" className="hover:text-white transition-colors">
-            About
+            {t.footer.about}
           </Link>
           <a
             href="https://github.com/manelcomiche/sketchynews"

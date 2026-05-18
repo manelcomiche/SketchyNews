@@ -3,6 +3,7 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -23,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={rubik.variable} suppressHydrationWarning>
+    <html lang="ca" className={rubik.variable} suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col font-[family-name:var(--font-rubik)]">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

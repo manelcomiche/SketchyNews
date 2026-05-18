@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { API_KEY_STORAGE_KEY } from "@/lib/constants";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ImageGenerator() {
   const [prompt, setPrompt] = useState("");
@@ -12,6 +13,7 @@ export default function ImageGenerator() {
   const [apiKey, setApiKey] = useState<string | null>(null);
   const [serverHasKey, setServerHasKey] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setApiKey(localStorage.getItem(API_KEY_STORAGE_KEY));
@@ -52,10 +54,10 @@ export default function ImageGenerator() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Failed to generate image.");
+      if (!res.ok) throw new Error(data.error ?? t.home.failedToGenerate);
       setImageUrl(data.url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+      setError(err instanceof Error ? err.message : t.home.unexpectedError);
     } finally {
       setLoading(false);
     }
@@ -64,7 +66,6 @@ export default function ImageGenerator() {
   const handleDownload = () => {
     if (!imageUrl) return;
     const a = document.createElement("a");
-    // data URLs (base64) download directly; remote URLs go through the proxy
     a.href = imageUrl.startsWith("data:")
       ? imageUrl
       : `/api/download?url=${encodeURIComponent(imageUrl)}`;
@@ -95,20 +96,17 @@ export default function ImageGenerator() {
           />
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
-          News into{" "}
-          <span className="text-[#e86a6a]">AI Art</span>
+          {t.home.titleLine1}{" "}
+          <span className="text-[#e86a6a]">{t.home.titleHighlight}</span>
         </h1>
-        <p className="text-[#888] text-lg">
-          Turn any headline into a striking AI-generated illustration.
-        </p>
+        <p className="text-[#888] text-lg">{t.home.subtitle}</p>
       </div>
 
       {/* API key notice */}
       {needsKey && (
         <div className="mb-6 px-4 py-3 rounded-xl border border-[#e86a6a]/20 bg-[#e86a6a]/5 text-sm text-[#888]">
-          <span className="text-[#e86a6a] font-medium">API key required —</span>{" "}
-          click the <span className="text-white font-medium">API Key</span> button in the
-          header to add your OpenAI key.
+          <span className="text-[#e86a6a] font-medium">{t.home.apiKeyRequiredLabel}</span>{" "}
+          {t.home.apiKeyRequiredText}
         </div>
       )}
 
@@ -119,7 +117,7 @@ export default function ImageGenerator() {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Enter a news headline or scene description…"
+          placeholder={t.home.placeholder}
           rows={3}
           disabled={loading}
           className="w-full resize-none bg-[#1a1a1a] border border-[#2e2e2e] rounded-2xl px-5 py-4 pb-10 text-white placeholder:text-[#555] text-base focus:outline-none focus:border-[#e86a6a]/40 transition-colors disabled:opacity-50 leading-relaxed"
@@ -155,10 +153,10 @@ export default function ImageGenerator() {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
               />
             </svg>
-            Generating image…
+            {t.home.generatingButton}
           </>
         ) : (
-          "Generate Image"
+          t.home.generateButton
         )}
       </button>
 
@@ -197,7 +195,7 @@ export default function ImageGenerator() {
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
               />
             </svg>
-            Download PNG
+            {t.home.downloadPng}
           </button>
         </div>
       )}

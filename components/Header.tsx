@@ -6,12 +6,17 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ApiKeyModal from "@/components/ApiKeyModal";
 import { API_KEY_STORAGE_KEY } from "@/lib/constants";
+import { useLanguage } from "@/lib/LanguageContext";
+import { type Locale, LOCALE_LABELS } from "@/lib/i18n";
+
+const LOCALES: Locale[] = ["ca", "es", "en"];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [hasKey, setHasKey] = useState(false);
   const pathname = usePathname();
+  const { locale, setLocale, t } = useLanguage();
 
   useEffect(() => {
     setHasKey(!!localStorage.getItem(API_KEY_STORAGE_KEY));
@@ -33,6 +38,24 @@ export default function Header() {
       </Link>
     );
   };
+
+  const langSelector = (
+    <div className="flex items-center gap-0.5 border border-[#2e2e2e] rounded-lg p-0.5">
+      {LOCALES.map((l) => (
+        <button
+          key={l}
+          onClick={() => setLocale(l)}
+          className={`px-2 py-1 rounded-md text-xs font-semibold transition-colors ${
+            locale === l
+              ? "bg-[#2e2e2e] text-white"
+              : "text-[#555] hover:text-[#888]"
+          }`}
+        >
+          {LOCALE_LABELS[l]}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -57,8 +80,8 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLink("/", "Generate")}
-            {navLink("/about", "About")}
+            {navLink("/", t.nav.generate)}
+            {navLink("/about", t.nav.about)}
             <button
               onClick={() => setModalOpen(true)}
               className={`ml-1 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
@@ -72,12 +95,14 @@ export default function Header() {
                   hasKey ? "bg-[#e86a6a]" : "bg-[#555]"
                 }`}
               />
-              API Key
+              {t.nav.apiKey}
             </button>
+            <div className="ml-2">{langSelector}</div>
           </nav>
 
           {/* Mobile controls */}
           <div className="flex md:hidden items-center gap-2">
+            {langSelector}
             <button
               onClick={() => setModalOpen(true)}
               className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition-colors ${
@@ -86,7 +111,7 @@ export default function Header() {
                   : "border-[#2e2e2e] text-[#888]"
               }`}
             >
-              API Key
+              {t.nav.apiKey}
             </button>
             <button
               onClick={() => setMenuOpen((v) => !v)}
@@ -109,8 +134,8 @@ export default function Header() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden border-t border-[#2e2e2e] px-4 py-2 flex flex-col gap-1">
-            {navLink("/", "Generate")}
-            {navLink("/about", "About")}
+            {navLink("/", t.nav.generate)}
+            {navLink("/about", t.nav.about)}
           </div>
         )}
       </header>

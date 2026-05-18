@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { API_KEY_STORAGE_KEY } from "@/lib/constants";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface ApiKeyModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export default function ApiKeyModal({ isOpen, onClose, onSave }: ApiKeyModalProp
   const [value, setValue] = useState("");
   const [showKey, setShowKey] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (isOpen) {
@@ -58,11 +60,11 @@ export default function ApiKeyModal({ isOpen, onClose, onSave }: ApiKeyModalProp
       {/* panel */}
       <div className="relative z-10 w-full max-w-md bg-[#1a1a1a] rounded-2xl border border-[#2e2e2e] p-6 shadow-2xl">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-white">OpenAI API Key</h2>
+          <h2 className="text-lg font-semibold text-white">{t.modal.title}</h2>
           <button
             onClick={onClose}
             className="text-[#888] hover:text-white transition-colors p-1 rounded-lg hover:bg-[#2e2e2e]"
-            aria-label="Close"
+            aria-label={t.modal.close}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -71,8 +73,7 @@ export default function ApiKeyModal({ isOpen, onClose, onSave }: ApiKeyModalProp
         </div>
 
         <p className="text-[#888] text-sm mb-4 leading-relaxed">
-          Your key is stored only in your browser&apos;s local storage and sent over HTTPS
-          to call the OpenAI API. It is never logged or stored server-side.
+          {t.modal.description}
         </p>
 
         <div className="relative mb-2">
@@ -82,7 +83,7 @@ export default function ApiKeyModal({ isOpen, onClose, onSave }: ApiKeyModalProp
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="sk-..."
+            placeholder={t.modal.placeholder}
             className="w-full bg-[#242424] border border-[#2e2e2e] rounded-xl px-4 py-3 pr-20 text-white placeholder:text-[#555] text-sm focus:outline-none focus:border-[#e86a6a]/50 transition-colors font-mono"
           />
           <button
@@ -90,12 +91,12 @@ export default function ApiKeyModal({ isOpen, onClose, onSave }: ApiKeyModalProp
             onClick={() => setShowKey((v) => !v)}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#888] hover:text-white transition-colors px-2 py-1 rounded-md hover:bg-[#2e2e2e]"
           >
-            {showKey ? "Hide" : "Show"}
+            {showKey ? t.modal.hide : t.modal.show}
           </button>
         </div>
 
         <p className="text-[#555] text-xs mb-5">
-          Get a key at{" "}
+          {t.modal.getKeyAt}{" "}
           <a
             href="https://platform.openai.com/api-keys"
             target="_blank"
@@ -111,13 +112,13 @@ export default function ApiKeyModal({ isOpen, onClose, onSave }: ApiKeyModalProp
             onClick={handleSave}
             className="flex-1 bg-[#e86a6a] hover:bg-[#d45858] text-white font-medium py-2.5 rounded-xl transition-colors text-sm"
           >
-            Save Key
+            {t.modal.saveKey}
           </button>
           <button
             onClick={handleClear}
             className="px-4 border border-[#2e2e2e] text-[#888] hover:text-white hover:bg-[#2e2e2e] rounded-xl transition-colors text-sm"
           >
-            Clear
+            {t.modal.clear}
           </button>
         </div>
       </div>
